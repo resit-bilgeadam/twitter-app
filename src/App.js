@@ -1,12 +1,25 @@
-import {Routes, Route, Link} from 'react-router-dom';
+import { useEffect } from 'react';
+import {Routes, Route} from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import AuthLayout from './layouts/AuthLayout';
 import MainLayout from './layouts/MainLayout';
 import Feeds from './pages/Feeds';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import { fetchUserDetails } from './store/actionCreators';
 import s from './App.module.scss';
 
 function App() {
+  const dispatch = useDispatch();
+
+  const fetchUser = () => {
+    dispatch(fetchUserDetails());
+  }
+
+  useEffect(() => {
+    fetchUser();
+  }, [])
+
   return (
     <div>
       <Routes>
