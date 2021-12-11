@@ -1,0 +1,17 @@
+@import '../../assets/styles/variables';
+
+.card {
+    border: 1px solid $dark;
+    background-color: $white;
+}
+.shadow {
+    box-shadow: 0 0 8px -2px $dark;
+}
+
+.rounded {
+    border-radius: 8px;
+}
+
+.default {
+    border-radius: 0;
+}

@@ -1,0 +1,19 @@
+$primary: #64b5f6;
+$secondary: #ffd600;
+$accent: #62757f;
+$white: snow;
+$dark: #263238;
+$danger: #dd2c00;
+$warning: #ffc400;
+$success: #64dd17;
+
+$transition: 200ms ease-in-out;
+
+@mixin btnColor($color: $primary, $textColor: $white) {
+    background-color: $color;
+    color: $textColor;
+
+    &:hover {
+        background-color: darken($color, 10%);
+    }
+}

@@ -1,0 +1,17 @@
+@import '../../assets/styles/variables';
+
+.title {
+    margin: 20px;
+}
+
+.formWrapper {
+    padding: 20px;
+}
+
+.text {
+    margin: 20px 0;
+
+    a {
+        color: $primary;
+    }
+}

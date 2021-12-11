@@ -1,0 +1,29 @@
+@import '../../assets/styles/variables';
+
+.navMenu {
+
+}
+
+.navList {
+    list-style-type: none;
+}
+
+.navItem {
+    display: flex;
+    padding: 10px;
+}
+
+.navLink {
+    flex: 1;
+    display: flex;
+    padding: 15px 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: $dark;
+    font-size: 20px;
+    transition: $transition;
+
+    &:hover {
+        background-color: lighten($primary, 10%);
+    }
+}

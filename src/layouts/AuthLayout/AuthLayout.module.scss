@@ -1,0 +1,12 @@
+@import '../../assets/styles/variables';
+
+.container {
+    background-color: $primary;
+    height: 100vh;
+    padding-top: 100px;
+}
+
+.formWrapper {
+    width: 400px;
+    margin: auto;
+}
