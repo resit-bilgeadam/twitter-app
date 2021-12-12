@@ -13,6 +13,10 @@
     &:hover {
         background-color: darken($white, 10%);
     }
+
+    &:disabled {
+        opacity: 0.5;
+    }
 }
 
 .primary {

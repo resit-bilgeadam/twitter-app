@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Formik, Form, Field } from "formik";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
@@ -6,26 +7,25 @@ import Card from "../../components/Card";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import { registerAction } from "../../store/actionCreators";
+import * as yup from 'yup';
 import s from './Register.module.scss';
+
+const registerSchema = yup.object().shape({
+    username: yup.string().min(3).required(),
+    email: yup.string().email().required(),
+    password: yup.string().min(6).required()
+})
 
 
 const Register = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
 
-    const register = async (e) => {
-        e.preventDefault()
+    const register = async (values, {setSubmitting}) => {
+        setSubmitting(true)
 
-        const registerForm = {
-            username,
-            email,
-            password
-        }
-
-        await dispatch(registerAction(registerForm));
+        await dispatch(registerAction(values));
+        setSubmitting(false);
         navigate('/');
     }
 
@@ -34,41 +34,48 @@ const Register = () => {
             <h1 className={s.title}>Register</h1>
 
             <div className={s.formWrapper}>
-                <form onSubmit={register}>
-                    <Input
-                        label='Username'
-                        name='username'
-                        placeholder='Enter your usename...'
-                        value={username}
-                        onChange={e => setUsername(e.target.value)}
-                        required />
-
-                    <Input
-                        label='Email'
-                        name='email'
-                        type='email'
-                        placeholder='Enter your email...'
-                        value={email}
-                        onChange={e => setEmail(e.target.value)}
-                        required />
-
-                    <Input
-                        label='Password'
-                        name='password'
-                        type='password'
-                        placeholder='Enter your password...'
-                        value={password}
-                        onChange={e => setPassword(e.target.value)}
-                        required />
+                <Formik
+                    initialValues={{
+                        username: '',
+                        email: '',
+                        password: ''
+                    }}
+                    validationSchema={registerSchema}
+                    onSubmit={register}>
                     
-                    <Button type='submit'>
-                        Register
-                    </Button>
+                    {({isSubmitting}) => (
+                        <Form>
+                            <Field
+                                as={Input}
+                                label='Username'
+                                name='username'
+                                placeholder='Enter your usename...' />
 
-                    <p className={s.text}>
-                        Already registered? Click <Link to='/auth/login'>here</Link> to login!
-                    </p>
-                </form>
+                            <Field
+                                as={Input}
+                                label='Email'
+                                name='email'
+                                type='email'
+                                placeholder='Enter your email...' />
+
+                            <Field
+                                as={Input}
+                                label='Password'
+                                name='password'
+                                type='password'
+                                placeholder='Enter your password...' />
+                            
+                            <Button type='submit' loading={isSubmitting}>
+                                Register
+                            </Button>
+
+                            <p className={s.text}>
+                                Already registered? Click <Link to='/auth/login'>here</Link> to login!
+                            </p>
+                        </Form>
+                    )}
+
+                </Formik>
             </div>
         </Card>
     )
