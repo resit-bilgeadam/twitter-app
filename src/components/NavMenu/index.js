@@ -26,14 +26,19 @@ const NavMenu = () => {
 
                 {
                     isAuthenticated ?
-                    <li className={s.navItem}>
-                        <a 
-                            href='#' 
-                            className={s.navLink}
-                            onClick={logout}>
-                            Logout
-                        </a>
-                    </li> :
+                    <>
+                        <li className={s.navItem}>
+                            <NavLink className={s.navLink} to='/me'>My Profile</NavLink>
+                        </li>
+                        <li className={s.navItem}>
+                            <a 
+                                href='#' 
+                                className={s.navLink}
+                                onClick={logout}>
+                                Logout
+                            </a>
+                        </li>
+                    </> :
                     <>
                         <li className={s.navItem}>
                             <NavLink className={s.navLink} to='/auth/login'>Login</NavLink>

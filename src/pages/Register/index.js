@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Formik, Form, Field } from "formik";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -15,7 +14,6 @@ const registerSchema = yup.object().shape({
     email: yup.string().email().required(),
     password: yup.string().min(6).required()
 })
-
 
 const Register = () => {
     const dispatch = useDispatch();
