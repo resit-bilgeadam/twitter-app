@@ -1,0 +1,15 @@
+@import '../../assets/styles/variables';
+
+.twitCard {
+    margin: 10px 0;
+}
+
+.cardBody {
+    padding: 20px;
+}
+
+.cardHeader{
+    padding: 20px;
+    font-size: 18px;
+    border-bottom: 1px solid $dark;
+}

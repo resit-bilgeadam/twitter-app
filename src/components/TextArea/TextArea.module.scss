@@ -1,0 +1,29 @@
+@import '../../assets/styles/variables';
+
+.formGroup {
+    margin: 10px 0;
+
+    label {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    textarea {
+        padding: 15px 10px;
+        border-radius: 8px;
+        border: 1px solid $accent;
+        outline: none;
+        transition: $transition;
+        display: block;
+        width: 100%;
+        resize: none;
+
+        &:focus {
+            border-color: $primary;
+        }
+    }
+}
+
+.danger {
+    border-color: $danger !important;
+}

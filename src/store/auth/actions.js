@@ -1,14 +1,12 @@
 import axios from 'axios';
 import { SET_TOKEN, SET_USER } from "./types";
-
-const baseURL = 'http://localhost:1337';
-
+import env from '../../environment';
 
 export const setToken = (token) => ({type: SET_TOKEN, payload: token});
 export const setUser = (user) => ({type: SET_USER, payload: user});
 
 export const registerAction = (registerForm) => async (dispatch) => {
-    const {data} = await axios.post(`${baseURL}/auth/local/register`, registerForm);
+    const {data} = await axios.post(`${env.baseURL}/auth/local/register`, registerForm);
 
     localStorage.setItem('token', data.jwt);
     dispatch(setToken(data.jwt));
@@ -16,7 +14,7 @@ export const registerAction = (registerForm) => async (dispatch) => {
 }
 
 export const loginAction = (loginForm) => async (dispatch) => {
-    const {data} = await axios.post(`${baseURL}/auth/local`, loginForm);
+    const {data} = await axios.post(`${env.baseURL}/auth/local`, loginForm);
 
     localStorage.setItem('token', data.jwt);
     dispatch(setToken(data.jwt));
@@ -35,11 +33,12 @@ export const fetchUserDetails = () => async (dispatch) => {
 
     if (!token) return;
 
-    const {data} = await axios.get(`${baseURL}/users/me`, {
+    const {data} = await axios.get(`${env.baseURL}/users/me`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
     })
 
     dispatch(setUser(data));
+    dispatch(setToken(token));
 }
