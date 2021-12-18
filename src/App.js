@@ -9,7 +9,7 @@ import Feeds from './pages/Feeds';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
-import { fetchUserDetails } from './store/actionCreators';
+import { fetchUserDetails } from './store/auth/actions';
 import s from './App.module.scss';
 
 function App() {

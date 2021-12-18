@@ -1,3 +1,4 @@
+import cc from 'classcat';
 import s from './Button.module.scss';
 
 const Button = ({
@@ -8,7 +9,13 @@ const Button = ({
     disabled = false,
     ...rest
 }) => {
-    const classNames = `${s.btn} ${s[color]} ${block ? s.block : ''}`;
+    const classNames = cc([
+        s.btn, 
+        s[color],
+        {
+            [s.block]: block
+        }
+    ])
 
     return (
         <button className={classNames} disabled={loading || disabled} {...rest}>

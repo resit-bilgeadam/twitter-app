@@ -1,12 +1,12 @@
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { logoutAction } from '../../store/actionCreators';
+import { logoutAction } from '../../store/auth/actions';
 import s from './NavMenu.module.scss';
 
 const NavMenu = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate()
-    const isAuthenticated = useSelector(state => !!state.user);
+    const isAuthenticated = useSelector(state => !!state.auth.user);
 
     const logout = () => {
         dispatch(logoutAction());

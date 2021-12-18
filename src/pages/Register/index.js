@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Card from "../../components/Card";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
-import { registerAction } from "../../store/actionCreators";
+import { registerAction } from "../../store/auth/actions";
 import * as yup from 'yup';
 import s from './Register.module.scss';
 

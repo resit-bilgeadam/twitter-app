@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import Card from '../../components/Card';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
-import { loginAction } from '../../store/actionCreators';
+import { loginAction } from '../../store/auth/actions';
 import s from './Login.module.scss';
 import { Formik, Form, Field } from 'formik';
 import * as yup from 'yup';
@@ -22,7 +22,6 @@ const Login = () => {
     const navigate = useNavigate();
 
     const login = async (values, {setSubmitting}) => {
-        console.log(values)
         setSubmitting(true);
 
         await dispatch(loginAction(values));

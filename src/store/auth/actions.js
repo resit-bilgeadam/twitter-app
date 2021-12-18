@@ -40,7 +40,6 @@ export const fetchUserDetails = () => async (dispatch) => {
             Authorization: `Bearer ${token}`
         }
     })
-    console.log(data);
 
     dispatch(setUser(data));
 }

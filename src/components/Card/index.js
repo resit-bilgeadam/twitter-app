@@ -1,3 +1,4 @@
+import cc from 'classcat';
 import s from './Card.module.scss';
 
 const Card = ({
@@ -5,7 +6,13 @@ const Card = ({
     shadow = false,
     type = 'default' // 'rounded' 'default'
 }) => {
-    const classNames = `${s.card} ${shadow ? s.shadow : ''} ${s[type]}`;
+    const classNames = cc([
+        s.card,
+        s[type],
+        {
+            [s.shadow]: shadow
+        }
+    ]);
 
     return (
         <div className={classNames}>

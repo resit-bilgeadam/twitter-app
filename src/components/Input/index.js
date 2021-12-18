@@ -11,7 +11,6 @@ const Input = ({
 }) => {
     const [field, meta] = useField(name);
     const hasError = meta.touched && meta.error;
-    console.log(meta);
 
     return (
         <div className={s.formGroup}>
