@@ -29,3 +29,35 @@ export const postTwit = (twit) => async (dispatch, getState) => {
     dispatch(fetchTwits());
 }
 
+export const postLike = (twitId) => async (dispatch, getState) => {
+    const {auth} = getState();
+
+    if (!auth.token) return;
+
+    const likeData = {
+        twit: twitId,
+        user: auth.user.id
+    }
+
+    await axios.post(`${env.baseURL}/likes`, likeData, {
+        headers: {
+            Authorization: `Bearer ${auth.token}`
+        }
+    });
+
+    dispatch(fetchTwits());
+}
+
+export const deleteLike = (likeId) => async (dispatch, getState) => {
+    const { auth } = getState();
+
+    if (!auth.token) return;
+
+    await axios.delete(`${env.baseURL}/likes/${likeId}`, {
+        headers: {
+            Authorization: `Bearer ${auth.token}`
+        }
+    });
+
+    dispatch(fetchTwits());
+}

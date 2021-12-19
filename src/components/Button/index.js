@@ -7,13 +7,15 @@ const Button = ({
     block = false,
     loading = false,
     disabled = false,
+    icon = false,
     ...rest
 }) => {
     const classNames = cc([
         s.btn, 
         s[color],
         {
-            [s.block]: block
+            [s.block]: block,
+            [s.icon]: icon
         }
     ])
 
