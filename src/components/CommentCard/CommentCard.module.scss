@@ -1,22 +1,17 @@
 @import '../../assets/styles/variables';
 
-.twitCard {
+.commentCard {
     margin: 10px 0;
     display: block;
     text-decoration: none;
     color: $dark;
-    transition: $transition;
-
-    &:hover {
-        box-shadow: $shadow;
-    }
 }
 
 .cardBody {
     padding: 20px;
 }
 
-.cardHeader{
+.cardHeader {
     padding: 20px;
     font-size: 18px;
     border-bottom: 1px solid $dark;
@@ -28,4 +23,3 @@
     grid-gap: 15px;
     grid-template-columns: repeat(4, 60px);
 }
-

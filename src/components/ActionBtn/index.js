@@ -8,7 +8,7 @@ const ActionBtn = ({
 }) => {
     return (
         <div className={s.actionBtn}>
-            <Button icon {...rest}>
+            <Button type='button' icon {...rest}>
                 {icon}
             </Button>
             <span>{children}</span>

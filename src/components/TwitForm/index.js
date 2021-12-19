@@ -4,20 +4,26 @@ import * as yup from 'yup';
 import Card from "../Card";
 import TextArea from "../TextArea";
 import Button from '../Button';
-import { postTwit } from '../../store/twit/actions';
+import { postTwit, postComment } from '../../store/twit/actions';
 import s from './TwitForm.module.scss';
 
 const twitSchema = yup.object().shape({
     text: yup.string().min(3).max(240).required()
 })
 
-const TwitForm = () => {
+const TwitForm = ({twitId, isComment = false, onSubmit}) => {
     const dispatch = useDispatch();
 
     const sendTwit = async (values, {setSubmitting, resetForm}) => {
         setSubmitting(true);
 
-        await dispatch(postTwit(values));
+        if (isComment) {
+            await dispatch(postComment(values, twitId));
+        } else {
+            await dispatch(postTwit(values));
+        }
+
+        if (onSubmit) onSubmit();
 
         resetForm();
         setSubmitting(false);
@@ -37,12 +43,12 @@ const TwitForm = () => {
                             <Form>
                                 <Field
                                     as={TextArea}
-                                    label='Send a twit'
+                                    label={isComment ? 'Send a comment' : 'Send a twit'}
                                     name='text'
-                                    placeholder='Enter your twit here...' />
+                                    placeholder={`Enter your ${isComment ? 'comment' : 'twit'} here...`} />
 
                                 <Button type='submit' loading={isSubmitting}>
-                                    Send Twit
+                                    Send {isComment ? 'Comment' :'Twit'}
                                 </Button>
                             </Form>
                         )

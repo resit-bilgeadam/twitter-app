@@ -6,6 +6,7 @@ import MainLayout from './layouts/MainLayout';
 import AuthenticatedRoute from './layouts/AuthenticatedRoute';
 import PublicRoute from './layouts/PublicRoute';
 import Feeds from './pages/Feeds';
+import TwitDetail from './pages/TwitDetail';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
@@ -28,7 +29,8 @@ function App() {
       <Routes>
         <Route path='/' element={<MainLayout />}>
           <Route index element={<Feeds />} />
-          <Route path='/me' element={
+          <Route path='twits/:id' element={<TwitDetail />} />
+          <Route path='me' element={
             <AuthenticatedRoute>
               <Profile />
             </AuthenticatedRoute>

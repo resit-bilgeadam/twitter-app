@@ -20,7 +20,10 @@ const Button = ({
     ])
 
     return (
-        <button className={classNames} disabled={loading || disabled} {...rest}>
+        <button 
+            className={classNames} 
+            disabled={loading || disabled}
+            {...rest}>
             {loading ? '...Loading' : children}
         </button>
     )
